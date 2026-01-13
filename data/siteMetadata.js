@@ -6,7 +6,7 @@ const siteMetadata = {
   description: '云玦科技致力于构建自进化通用智能体 (Self-Evolving AGI)。智能，因你而进化。',
   language: 'en-us',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://YunjueTech.github.io',
+  siteUrl: 'https://yunjuetech.com',
   siteRepo: 'https://github.com/YunjueTech/YunjueTech.github.io',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
