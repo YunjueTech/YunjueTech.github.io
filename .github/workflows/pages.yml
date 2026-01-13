@@ -36,9 +36,9 @@ jobs:
       - run: yarn
       - run: yarn build
         env:
-          EXPORT: 1
-          UNOPTIMIZED: 1
-          BASE_PATH: ${{ steps.configurepages.outputs.base_path }}
+          EXPORT: true
+          UNOPTIMIZED: true
+          BASE_PATH: /YunjueTech.github.io
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
