@@ -17,10 +17,8 @@ export default function SimpleBlogLayout({ posts, title, subtitle }: SimpleBlogL
   return (
     <>
       <div className="pt-12 pb-8">
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">{title}</h1>
-        {subtitle && (
-          <p className="text-lg text-gray-600 dark:text-gray-400 mt-2">{subtitle}</p>
-        )}
+        <h1 className="mb-2 text-4xl font-bold text-gray-900 dark:text-gray-100">{title}</h1>
+        {subtitle && <p className="mt-2 text-lg text-gray-600 dark:text-gray-400">{subtitle}</p>}
       </div>
       <ul className="space-y-0">
         {posts.map((post) => {
@@ -48,19 +46,19 @@ export default function SimpleBlogLayout({ posts, title, subtitle }: SimpleBlogL
               <article className="flex items-start gap-4">
                 <time
                   dateTime={date}
-                  className="text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap"
+                  className="text-sm whitespace-nowrap text-gray-500 dark:text-gray-400"
                 >
                   {formattedDate}
                 </time>
-                <div className="flex-1 min-w-0">
+                <div className="min-w-0 flex-1">
                   <Link
                     href={`/${path}`}
-                    className="text-gray-900 dark:text-gray-100 hover:text-primary-500 dark:hover:text-primary-400 inline"
+                    className="hover:text-primary-500 dark:hover:text-primary-400 inline text-gray-900 dark:text-gray-100"
                   >
                     {title}
                   </Link>
                   {authorNames && (
-                    <span className="text-sm text-gray-500 dark:text-gray-400 ml-2">
+                    <span className="ml-2 text-sm text-gray-500 dark:text-gray-400">
                       {authorNames}
                     </span>
                   )}

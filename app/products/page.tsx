@@ -11,12 +11,10 @@ export default function Products() {
       {/* Hero Section */}
       <div className="pt-16 pb-20 md:pt-24 md:pb-32">
         <div className="max-w-4xl">
-          <h1 className="text-5xl leading-tight font-bold tracking-tight text-gray-900 sm:text-6xl md:text-7xl lg:text-8xl dark:text-gray-100 mb-6">
+          <h1 className="mb-6 text-5xl leading-tight font-bold tracking-tight text-gray-900 sm:text-6xl md:text-7xl lg:text-8xl dark:text-gray-100">
             Products
           </h1>
-          <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-400 mt-8">
-            我们的产品
-          </p>
+          <p className="mt-8 text-2xl text-gray-600 md:text-3xl dark:text-gray-400">我们的产品</p>
         </div>
       </div>
 
@@ -26,9 +24,9 @@ export default function Products() {
           {productsData.map((product) => (
             <article
               key={product.slug}
-              className="border-b border-gray-200 dark:border-gray-800 pb-16 last:border-b-0"
+              className="border-b border-gray-200 pb-16 last:border-b-0 dark:border-gray-800"
             >
-              <div className="flex flex-col md:flex-row gap-8">
+              <div className="flex flex-col gap-8 md:flex-row">
                 {product.imgSrc && (
                   <div className="flex-shrink-0 md:w-1/3">
                     <Link href={`/products/${product.slug}`}>
@@ -37,13 +35,13 @@ export default function Products() {
                         alt={product.title}
                         width={400}
                         height={300}
-                        className="rounded-lg object-cover w-full h-48 md:h-64"
+                        className="h-48 w-full rounded-lg object-cover md:h-64"
                       />
                     </Link>
                   </div>
                 )}
                 <div className="flex-1">
-                  <h2 className="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
+                  <h2 className="mb-2 text-3xl font-semibold text-gray-900 dark:text-gray-100">
                     <Link
                       href={`/products/${product.slug}`}
                       className="hover:text-primary-500 dark:hover:text-primary-400"
@@ -52,11 +50,11 @@ export default function Products() {
                     </Link>
                   </h2>
                   {product.titleEn && (
-                    <p className="text-lg text-gray-500 dark:text-gray-400 mb-4">
+                    <p className="mb-4 text-lg text-gray-500 dark:text-gray-400">
                       {product.titleEn}
                     </p>
                   )}
-                  <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300 mb-6">
+                  <p className="mb-6 text-lg leading-relaxed text-gray-700 dark:text-gray-300">
                     {product.shortDescription}
                   </p>
                   <Link
