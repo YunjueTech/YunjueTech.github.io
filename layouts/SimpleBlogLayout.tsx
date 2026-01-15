@@ -6,14 +6,16 @@ import siteMetadata from '@/data/siteMetadata'
 import { allAuthors } from 'contentlayer/generated'
 import { coreContent } from 'pliny/utils/contentlayer'
 import type { Authors } from 'contentlayer/generated'
+import type { Locale } from '@/lib/i18n'
 
 interface SimpleBlogLayoutProps {
   posts: CoreContent<Blog>[]
   title: string
   subtitle?: string
+  locale: Locale
 }
 
-export default function SimpleBlogLayout({ posts, title, subtitle }: SimpleBlogLayoutProps) {
+export default function SimpleBlogLayout({ posts, title, subtitle, locale }: SimpleBlogLayoutProps) {
   return (
     <>
       {/* Hero Section */}
@@ -33,44 +35,58 @@ export default function SimpleBlogLayout({ posts, title, subtitle }: SimpleBlogL
         <div className="max-w-4xl">
           <ul className="space-y-0">
             {posts.map((post) => {
-              const { path, date, title, authors } = post
+              const { path, date, title, titleZh, authors } = post as any
               const authorList = authors || ['default']
               const authorDetails = authorList.map((author) => {
                 const authorResults = allAuthors.find((p) => p.slug === author)
                 return coreContent(authorResults as Authors)
               })
               const authorNames = authorDetails
-                .map((author) => author?.name || '')
+                .map((author) => {
+                  if (!author) return ''
+                  // 根据语言选择作者名
+                  if (locale === 'zh') {
+                    return author.name || ''
+                  } else {
+                    return (author as any).nameEn || author.name || ''
+                  }
+                })
                 .filter(Boolean)
                 .join(', ')
 
-              // Format date as "Mon DD, YYYY" similar to thinkingmachines.ai
+              // 根据语言选择标题
+              const displayTitle = locale === 'zh' && titleZh ? titleZh : title
+
+              // Format date based on locale
               const postDate = new Date(date)
-              const formattedDate = postDate.toLocaleDateString('en-US', {
-                month: 'short',
-                day: 'numeric',
-                year: 'numeric',
-              })
+              const formattedDate = postDate.toLocaleDateString(
+                locale === 'zh' ? 'zh-CN' : 'en-US',
+                {
+                  month: 'short',
+                  day: 'numeric',
+                  year: 'numeric',
+                }
+              )
 
               return (
-                <li key={path} className="border-b border-gray-200 pb-8 last:border-b-0 dark:border-gray-800">
-                  <article>
+                <li key={path} className="border-b border-gray-200 pb-12 last:border-b-0 dark:border-gray-800">
+                  <article className="pt-12">
                     <time
                       dateTime={date}
-                      className="text-base text-gray-500 dark:text-gray-400"
+                      className="block text-sm text-gray-500 dark:text-gray-400 mb-4"
                     >
                       {formattedDate}
                     </time>
-                    <h3 className="mb-2 mt-2 text-2xl font-semibold text-gray-900 dark:text-gray-100">
+                    <h3 className="mb-4 text-2xl font-semibold text-gray-900 dark:text-gray-100">
                       <Link
-                        href={`/${path}`}
+                        href={`/${locale}/${path}`}
                         className="hover:text-primary-500 dark:hover:text-primary-400"
                       >
-                        {title}
+                        {displayTitle}
                       </Link>
                     </h3>
                     {authorNames && (
-                      <p className="text-lg text-gray-500 dark:text-gray-400">{authorNames}</p>
+                      <p className="text-base text-gray-500 dark:text-gray-400">{authorNames}</p>
                     )}
                   </article>
                 </li>

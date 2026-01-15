@@ -3,9 +3,12 @@ export interface Product {
   title: string
   titleEn?: string
   shortDescription: string
+  shortDescriptionEn?: string
   description: string
+  descriptionEn?: string
   imgSrc?: string
   features?: string[]
+  featuresEn?: string[]
 }
 
 const productsData: Product[] = [
@@ -15,6 +18,8 @@ const productsData: Product[] = [
     titleEn: 'Yunjue ONE',
     shortDescription:
       '带上云玦，丢掉大脑：我们如何打造身体的"自动驾驶"系统。基于自进化多模态智能体技术，云玦 ONE 不仅仅是一个记录者，它是一个决策者。',
+    shortDescriptionEn:
+      'Wear Yunjue, forget your brain: How we build an "autopilot" system for your body. Based on self-evolving multimodal intelligent agent technology, Yunjue ONE is not just a recorder, it is a decision-maker.',
     description: `# 带上手表，丢掉大脑
 
 ## 我们如何打造身体的"自动驾驶"系统
@@ -82,12 +87,85 @@ const productsData: Product[] = [
 今天，云玦帮你决定"什么时候去跑步"； 未来，云玦将帮你决定"什么时候去旅行"、"如何规划职业发展"、"如何平衡工作与生活"。
 
 **始于健康，终于自由。** 这是云玦给你的承诺。把繁琐的规划交给我们，把生活的美好留给你自己。`,
+    descriptionEn: `# Wear the Watch, Forget Your Brain
+
+## How We Build an "Autopilot" System for Your Body
+
+In science fiction movies, we always see scenes like this: the protagonist is followed by an omniscient and omnipotent super butler. It not only arranges schedules but also reads expressions, handing a cup of hot tea when the protagonist feels tired, and planning escape routes before crises arrive.
+
+This is exactly Yunjue Technology's ultimate vision for the future: to take over all the tedious planning in human life and become your second brain.
+
+To realize this vision, we need an entry point that is complex enough yet closed-loop enough. We chose the field closest to everyone yet most headache-inducing—fitness and health.
+
+## Current Wearable Devices Are Just a "Mirror"
+
+Look at the smartwatch on your wrist, what does it tell you every day? "Heart rate 75", "Steps 8000", "Deep sleep 45 minutes last night".
+
+It's like a mirror, faithfully reflecting your current state. But for most people, the data in the mirror is cold. You know you didn't sleep well, but you don't know how to adjust your coffee intake today; you know you've gained weight, but you don't know what to eat or exercise when you're working overtime until 9 PM tonight.
+
+Users don't want numbers on their wrists, users only want a healthy body.
+
+The gap in between is "decision-making".
+
+## Solving "Decision Fatigue": Wear Yunjue, Forget Your Brain
+
+The biggest consumption in modern life is not physical consumption, but decision-making consumption. "Should I exercise today?", "What to exercise?", "Salad or noodles?", "Is it too late to go now?"... Every tiny hesitation is draining your willpower.
+
+Yunjue's core philosophy is very radical and simple: wear Yunjue, forget your brain.
+
+Based on our advanced self-evolving multimodal intelligent agent technology, Yunjue ONE is not just a recorder, it is a decision-maker. Thanks to multimodal perception capabilities, Yunjue not only reads your heart rate and blood oxygen, it can also sense your emotions (through voice tone), understand your situation (through environmental perception), and even predict your intentions.
+
+When you wear Yunjue, you don't need to think about planning anymore:
+
+- **Can I exercise?** Yunjue tells you directly based on your recovery state and schedule: yes, or no.
+- **What to exercise?** Yunjue combines your goals and current environment (office, gym, home) and directly pushes the most suitable plan.
+- **What to eat?** Yunjue knows how much you've just consumed, combines your taste preferences, and directly recommends the best nutrition at this moment.
+
+What you need to do is just "obey". Hand your body over to Yunjue's management, just like handing your car over to autopilot.
+
+## Map Philosophy: Dynamic Re-routing Like GPS
+
+Many people resist "self-discipline" because traditional self-discipline is full of "frustration". Once you fail to stick to it one day, the plan falls apart, and psychological pressure follows.
+
+Yunjue's philosophy is: a good assistant never judges the boss.
+
+We adopted a **"map navigation"** style interaction philosophy. When you drive using map navigation to a destination, if you take a wrong turn at an intersection, or want to change routes due to traffic, will the map software scold you? No. It will just calmly say: "Re-routing for you", and then give a new plan based on your current position to the destination.
+
+Yunjue is the same.
+
+If you're too tired today and didn't go to the gym as planned, Yunjue won't pop up a warning, it will default to expired re-planning and automatically adjust tomorrow's training intensity.
+
+If you can't resist having a cheat meal, Yunjue won't make you feel guilty, it will silently adjust the upcoming calorie deficit plan.
+
+We default that users don't execute. Users have absolute freedom to take other paths, but as long as you're still wearing Yunjue, we will always provide you with an optimal path from the current state to the goal.
+
+## From Body to World: Building the Future's Universal Assistant
+
+Why are we so confident in this path?
+
+Because fitness and health is an excellent **"intelligence closed loop"**. In this field, we need to solve three core technical challenges:
+
+1. **Environment and World Model Modeling**: Today's rain, tomorrow's meeting, the gym's crowdedness are all variables.
+2. **User Psychology and State Perception**: The "state" here is not just physiological indicators, but also the psychological energy of emotions.
+3. **Ultra-long Cycle Dynamic Planning**: How to dynamically adjust daily micro-decisions over months to achieve the final result.
+
+When we successfully run this logic in the fitness and health field, when Yunjue can perfectly handle your body's "input and output" and understand your "emotions and environment", this technology will have the ability to migrate to other areas of life.
+
+Today, Yunjue helps you decide "when to go for a run"; in the future, Yunjue will help you decide "when to travel", "how to plan career development", "how to balance work and life".
+
+**Starting with health, ending with freedom.** This is Yunjue's promise to you. Leave the tedious planning to us, keep the beauty of life for yourself.`,
     imgSrc: '/static/images/time-machine.jpg',
     features: [
       '自进化多模态智能体技术',
       '实时决策与规划',
       '动态路径重排',
       '情绪与环境感知',
+    ],
+    featuresEn: [
+      'Self-Evolving Multimodal Intelligent Agent Technology',
+      'Real-time Decision Making and Planning',
+      'Dynamic Path Re-routing',
+      'Emotion and Environment Perception',
     ],
   },
 ]

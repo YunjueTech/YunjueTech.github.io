@@ -8,15 +8,17 @@ import PageTitle from '@/components/PageTitle'
 import SectionContainer from '@/components/SectionContainer'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
+import type { Locale } from '@/lib/i18n'
 
 interface LayoutProps {
   content: CoreContent<Blog>
   children: ReactNode
   next?: { path: string; title: string }
   prev?: { path: string; title: string }
+  locale?: Locale
 }
 
-export default function PostLayout({ content, next, prev, children }: LayoutProps) {
+export default function PostLayout({ content, next, prev, children, locale = 'en' }: LayoutProps) {
   const { path, slug, date, title } = content
 
   return (
@@ -53,9 +55,9 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
                 {prev && prev.path && (
                   <div className="pt-4 xl:pt-8">
                     <Link
-                      href={`/${prev.path}`}
+                      href={`/${locale}/${prev.path}`}
                       className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                      aria-label={`Previous post: ${prev.title}`}
+                      aria-label={locale === 'zh' ? `上一篇文章: ${prev.title}` : `Previous post: ${prev.title}`}
                     >
                       &larr; {prev.title}
                     </Link>
@@ -64,9 +66,9 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
                 {next && next.path && (
                   <div className="pt-4 xl:pt-8">
                     <Link
-                      href={`/${next.path}`}
+                      href={`/${locale}/${next.path}`}
                       className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                      aria-label={`Next post: ${next.title}`}
+                      aria-label={locale === 'zh' ? `下一篇文章: ${next.title}` : `Next post: ${next.title}`}
                     >
                       {next.title} &rarr;
                     </Link>

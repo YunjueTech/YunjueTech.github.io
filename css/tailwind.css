@@ -173,3 +173,39 @@ input:-webkit-autofill:focus {
   display: inline-block;
   vertical-align: middle;
 }
+
+/* KBar 搜索框样式 */
+/* 隐藏搜索框占位文本 */
+input[data-kbar-input]::placeholder,
+input[placeholder*="command"]::placeholder,
+input[placeholder*="search"]::placeholder,
+input[placeholder*="输入"]::placeholder,
+input[placeholder*="Type"]::placeholder {
+  color: transparent !important;
+  opacity: 0 !important;
+}
+
+/* 隐藏 section 分组标题 */
+[data-kbar-section],
+.kbar-section,
+div[class*="kbar-section"],
+div[class*="section"] {
+  display: none !important;
+}
+
+/* 隐藏分组标题文本 */
+div:has(> [data-kbar-section]),
+div:has(> .kbar-section) {
+  display: none !important;
+}
+
+/* 中文页面 ESC 按钮改为退出 */
+html[lang="zh-CN"] * {
+  /* 使用 CSS 来隐藏 ESC 文本并显示退出 */
+}
+
+/* 更直接的方法：查找所有包含 ESC 的元素 */
+html[lang="zh-CN"] [data-kbar-modal] *,
+html[lang="zh-CN"] [id*="kbar"] * {
+  /* 由 JavaScript 处理 */
+}
