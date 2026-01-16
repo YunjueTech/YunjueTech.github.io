@@ -25,7 +25,6 @@ export const CustomSearchProvider = ({ children }: { children: React.ReactNode }
       <KBarSearchProvider
         kbarConfig={{
           searchDocumentsPath: searchDocumentsPath,
-          placeholder: '',
           defaultActions: [],
           onSearchDocumentsLoad(json) {
             return json.map((post: CoreContent<Blog>) => ({
