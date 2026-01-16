@@ -45,6 +45,53 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
       <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
       <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">
+        {/* 在 React 加载前执行语言重定向（仅用于根路径） */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                // 只在根路径执行
+                if (window.location.pathname === '/' || window.location.pathname === '${basePath}/') {
+                  var locale = 'en';
+                  
+                  // 1. 检查 localStorage
+                  try {
+                    var stored = localStorage.getItem('locale');
+                    if (stored === 'zh' || stored === 'en') {
+                      locale = stored;
+                    }
+                  } catch(e) {}
+                  
+                  // 2. 检查 cookie
+                  if (locale === 'en') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                      var cookie = cookies[i].trim();
+                      if (cookie.startsWith('locale=')) {
+                        var value = cookie.split('=')[1];
+                        if (value === 'zh' || value === 'en') {
+                          locale = value;
+                          break;
+                        }
+                      }
+                    }
+                  }
+                  
+                  // 3. 检查浏览器语言
+                  if (locale === 'en') {
+                    var lang = navigator.language || navigator.userLanguage;
+                    if (lang && lang.toLowerCase().includes('zh')) {
+                      locale = 'zh';
+                    }
+                  }
+                  
+                  // 执行重定向
+                  window.location.replace('/' + locale);
+                }
+              })();
+            `,
+          }}
+        />
         <HtmlLangSetter />
         {children}
       </body>
