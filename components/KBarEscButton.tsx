@@ -13,15 +13,15 @@ export default function KBarEscButton() {
 
     const updateEscButton = () => {
       // 方法1: 在整个文档中查找包含 ESC 的元素（更激进的方法）
-      const walker = document.createTreeWalker(
-        document.body,
-        NodeFilter.SHOW_TEXT,
-        null
-      )
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null)
 
       let node
       while ((node = walker.nextNode())) {
-        if (node.textContent && node.textContent.includes('ESC') && !node.textContent.includes('退出')) {
+        if (
+          node.textContent &&
+          node.textContent.includes('ESC') &&
+          !node.textContent.includes('退出')
+        ) {
           node.textContent = node.textContent.replace(/ESC/g, '退出')
         }
       }
@@ -31,18 +31,22 @@ export default function KBarEscButton() {
       allElements.forEach((element) => {
         if (element instanceof HTMLElement) {
           // 检查 textContent
-          if (element.textContent && element.textContent.includes('ESC') && !element.textContent.includes('退出')) {
+          if (
+            element.textContent &&
+            element.textContent.includes('ESC') &&
+            !element.textContent.includes('退出')
+          ) {
             element.textContent = element.textContent.replace(/ESC/g, '退出')
           }
-          
+
           // 检查 innerHTML（处理包含 HTML 的情况）
-          if (element.innerHTML && element.innerHTML.includes('ESC') && !element.innerHTML.includes('退出')) {
+          if (
+            element.innerHTML &&
+            element.innerHTML.includes('ESC') &&
+            !element.innerHTML.includes('退出')
+          ) {
             // 只替换文本节点，保留 HTML 结构
-            const walker2 = document.createTreeWalker(
-              element,
-              NodeFilter.SHOW_TEXT,
-              null
-            )
+            const walker2 = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null)
             let textNode
             while ((textNode = walker2.nextNode())) {
               if (textNode.textContent && textNode.textContent.includes('ESC')) {
@@ -68,11 +72,13 @@ export default function KBarEscButton() {
       mutations.forEach((mutation) => {
         if (mutation.type === 'childList' || mutation.type === 'characterData') {
           const target = mutation.target as HTMLElement
-          if (target.querySelector?.('[data-kbar-modal]') || 
-              target.closest?.('[data-kbar-modal]') ||
-              target.getAttribute?.('data-kbar-modal') ||
-              target.id?.includes('kbar') ||
-              target.className?.includes('kbar')) {
+          if (
+            target.querySelector?.('[data-kbar-modal]') ||
+            target.closest?.('[data-kbar-modal]') ||
+            target.getAttribute?.('data-kbar-modal') ||
+            target.id?.includes('kbar') ||
+            target.className?.includes('kbar')
+          ) {
             shouldUpdate = true
           }
         }
@@ -97,4 +103,3 @@ export default function KBarEscButton() {
 
   return null
 }
-

@@ -18,7 +18,7 @@ export default async function BlogPage(props: { params: Promise<{ locale: string
   const params = await props.params
   const locale = (params.locale || 'en') as Locale
   const t = (key: string) => getTranslation(key, locale)
-  
+
   // Filter out drafts in production
   const isProduction = process.env.NODE_ENV === 'production'
   const filteredBlogs = isProduction ? allBlogs.filter((post) => post.draft !== true) : allBlogs
@@ -33,4 +33,3 @@ export default async function BlogPage(props: { params: Promise<{ locale: string
     />
   )
 }
-

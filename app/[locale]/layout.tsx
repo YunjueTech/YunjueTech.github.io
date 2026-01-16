@@ -18,7 +18,7 @@ export async function generateMetadata(props: {
 }): Promise<Metadata> {
   const params = await props.params
   const locale = params.locale as Locale
-  
+
   return {
     metadataBase: new URL(siteMetadata.siteUrl),
     title: {
@@ -85,4 +85,3 @@ export default async function LocaleLayout({
     </ThemeProviders>
   )
 }
-

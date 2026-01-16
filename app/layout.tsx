@@ -10,7 +10,7 @@ const space_grotesk = Space_Grotesk({
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const basePath = process.env.BASE_PATH || ''
-  
+
   return (
     <html
       lang="en-US"

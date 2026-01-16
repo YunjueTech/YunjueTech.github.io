@@ -10,14 +10,16 @@ import { getLocaleFromPath, defaultLocale, addLocaleToPath } from '@/lib/i18n'
 const CustomLink = ({ href, ...rest }: LinkProps & AnchorHTMLAttributes<HTMLAnchorElement>) => {
   const pathname = usePathname()
   const currentLocale = getLocaleFromPath(pathname) || defaultLocale
-  
+
   const isInternalLink = href && typeof href === 'string' && href.startsWith('/')
   const isAnchorLink = href && typeof href === 'string' && href.startsWith('#')
-  const isExternalLink = href && typeof href === 'string' && (href.startsWith('http') || href.startsWith('mailto:'))
+  const isExternalLink =
+    href && typeof href === 'string' && (href.startsWith('http') || href.startsWith('mailto:'))
 
   if (isInternalLink && typeof href === 'string') {
     // Check if href already has locale prefix
-    const hasLocale = href.split('/').filter(Boolean)[0] === 'en' || href.split('/').filter(Boolean)[0] === 'zh'
+    const hasLocale =
+      href.split('/').filter(Boolean)[0] === 'en' || href.split('/').filter(Boolean)[0] === 'zh'
     const finalHref = hasLocale ? href : addLocaleToPath(href, currentLocale)
     return <Link className="break-words" href={finalHref} {...rest} />
   }

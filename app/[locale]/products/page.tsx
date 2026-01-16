@@ -84,4 +84,3 @@ export default async function Products(props: { params: Promise<{ locale: string
     </>
   )
 }
-

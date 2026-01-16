@@ -54,7 +54,9 @@ export default function PostMinimal({ content, next, prev, children, locale = 'e
                   <Link
                     href={`/${locale}/${prev.path}`}
                     className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                    aria-label={locale === 'zh' ? `上一篇文章: ${prev.title}` : `Previous post: ${prev.title}`}
+                    aria-label={
+                      locale === 'zh' ? `上一篇文章: ${prev.title}` : `Previous post: ${prev.title}`
+                    }
                   >
                     &larr; {prev.title}
                   </Link>
@@ -65,7 +67,9 @@ export default function PostMinimal({ content, next, prev, children, locale = 'e
                   <Link
                     href={`/${locale}/${next.path}`}
                     className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                    aria-label={locale === 'zh' ? `下一篇文章: ${next.title}` : `Next post: ${next.title}`}
+                    aria-label={
+                      locale === 'zh' ? `下一篇文章: ${next.title}` : `Next post: ${next.title}`
+                    }
                   >
                     {next.title} &rarr;
                   </Link>

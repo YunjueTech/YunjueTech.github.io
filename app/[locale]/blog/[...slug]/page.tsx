@@ -4,7 +4,7 @@ import 'katex/dist/katex.css'
 import PageTitle from '@/components/PageTitle'
 import { components } from '@/components/MDXComponents'
 import { MDXLayoutRenderer } from 'pliny/mdx-components'
-import { sortPosts, coreContent, allCoreContent } from 'pliny/utils/contentlayer'
+import { sortPosts, coreContent, allCoreContent, CoreContent } from 'pliny/utils/contentlayer'
 import { allBlogs, allAuthors } from 'contentlayer/generated'
 import type { Authors, Blog } from 'contentlayer/generated'
 import PostSimple from '@/layouts/PostSimple'
@@ -39,11 +39,16 @@ export async function generateMetadata(props: {
   }
 
   // 根据语言选择标题
-  const displayTitle = locale === 'zh' && (post as any).titleZh ? (post as any).titleZh : post.title
-  
+  const displayTitle =
+    locale === 'zh' && (post as Blog & { titleZh?: string }).titleZh
+      ? (post as Blog & { titleZh?: string }).titleZh
+      : post.title
+
   // 根据语言选择作者名
   const authors = authorDetails.map((author) => {
-    return locale === 'zh' ? author.name : ((author as any).nameEn || author.name)
+    return locale === 'zh'
+      ? author.name
+      : (author as Authors & { nameEn?: string }).nameEn || author.name
   })
 
   const publishedAt = new Date(post.date).toISOString()
@@ -83,20 +88,20 @@ export async function generateMetadata(props: {
 }
 
 export const generateStaticParams = async () => {
-  return allBlogs.map((p) => ({
-    slug: p.slug.split('/').map((name) => decodeURI(name)),
-    locale: 'en',
-  })).concat(
-    allBlogs.map((p) => ({
+  return allBlogs
+    .map((p) => ({
       slug: p.slug.split('/').map((name) => decodeURI(name)),
-      locale: 'zh',
+      locale: 'en',
     }))
-  )
+    .concat(
+      allBlogs.map((p) => ({
+        slug: p.slug.split('/').map((name) => decodeURI(name)),
+        locale: 'zh',
+      }))
+    )
 }
 
-export default async function Page(props: {
-  params: Promise<{ slug: string[]; locale: string }>
-}) {
+export default async function Page(props: { params: Promise<{ slug: string[]; locale: string }> }) {
   const params = await props.params
   const locale = params.locale as Locale
   const slug = decodeURI(params.slug.join('/'))
@@ -125,14 +130,20 @@ export default async function Page(props: {
   })
 
   const Layout = layouts[post.layout || defaultLayout]
-  
+
   // 根据语言选择标题
-  const displayTitle = locale === 'zh' && (post as any).titleZh ? (post as any).titleZh : post.title
-  
+  const displayTitle =
+    locale === 'zh' && (post as Blog & { titleZh?: string }).titleZh
+      ? (post as Blog & { titleZh?: string }).titleZh
+      : post.title
+
   // 根据语言选择作者名
   const displayAuthorDetails = authorDetails.map((author) => ({
     ...author,
-    displayName: locale === 'zh' ? author.name : ((author as any).nameEn || author.name),
+    displayName:
+      locale === 'zh'
+        ? author.name
+        : (author as Authors & { nameEn?: string }).nameEn || author.name,
   }))
 
   return (
@@ -141,10 +152,10 @@ export default async function Page(props: {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Layout 
-        content={{ ...mainContent, title: displayTitle } as any} 
-        authorDetails={displayAuthorDetails as any} 
-        next={next} 
+      <Layout
+        content={{ ...mainContent, title: displayTitle } as CoreContent<Blog>}
+        authorDetails={displayAuthorDetails as (CoreContent<Authors> & { displayName?: string })[]}
+        next={next}
         prev={prev}
         locale={locale}
       >
@@ -153,4 +164,3 @@ export default async function Page(props: {
     </>
   )
 }
-

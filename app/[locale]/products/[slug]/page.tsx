@@ -120,7 +120,8 @@ export default async function ProductPage(props: {
     return result.join('')
   }
 
-  const content = locale === 'zh' ? product.description : product.descriptionEn || product.description
+  const content =
+    locale === 'zh' ? product.description : product.descriptionEn || product.description
   const htmlContent = formatContent(content)
   const productTitle = locale === 'zh' ? product.title : product.titleEn || product.title
   const productSubtitle = locale === 'zh' ? product.titleEn : product.title
@@ -193,4 +194,3 @@ export default async function ProductPage(props: {
     </>
   )
 }
-

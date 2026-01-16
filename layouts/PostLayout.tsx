@@ -31,7 +31,14 @@ interface LayoutProps {
   locale?: Locale
 }
 
-export default function PostLayout({ content, authorDetails, next, prev, children, locale = 'en' }: LayoutProps) {
+export default function PostLayout({
+  content,
+  authorDetails,
+  next,
+  prev,
+  children,
+  locale = 'en',
+}: LayoutProps) {
   const { filePath, path, slug, date, title, tags } = content
   const basePath = path.split('/')[0]
 
@@ -78,21 +85,21 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                         <dl className="text-sm leading-5 font-medium whitespace-nowrap">
                           <dt className="sr-only">Name</dt>
                           <dd className="text-gray-900 dark:text-gray-100">{displayName}</dd>
-                        <dt className="sr-only">Twitter</dt>
-                        <dd>
-                          {author.twitter && (
-                            <Link
-                              href={author.twitter}
-                              className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                            >
-                              {author.twitter
-                                .replace('https://twitter.com/', '@')
-                                .replace('https://x.com/', '@')}
-                            </Link>
-                          )}
-                        </dd>
-                      </dl>
-                    </li>
+                          <dt className="sr-only">Twitter</dt>
+                          <dd>
+                            {author.twitter && (
+                              <Link
+                                href={author.twitter}
+                                className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                              >
+                                {author.twitter
+                                  .replace('https://twitter.com/', '@')
+                                  .replace('https://x.com/', '@')}
+                              </Link>
+                            )}
+                          </dd>
+                        </dl>
+                      </li>
                     )
                   })}
                 </ul>

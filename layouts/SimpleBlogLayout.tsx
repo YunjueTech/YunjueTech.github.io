@@ -15,7 +15,12 @@ interface SimpleBlogLayoutProps {
   locale: Locale
 }
 
-export default function SimpleBlogLayout({ posts, title, subtitle, locale }: SimpleBlogLayoutProps) {
+export default function SimpleBlogLayout({
+  posts,
+  title,
+  subtitle,
+  locale,
+}: SimpleBlogLayoutProps) {
   return (
     <>
       {/* Hero Section */}
@@ -35,7 +40,9 @@ export default function SimpleBlogLayout({ posts, title, subtitle, locale }: Sim
         <div className="max-w-4xl">
           <ul className="space-y-0">
             {posts.map((post) => {
-              const { path, date, title, titleZh, authors } = post as any
+              const { path, date, title, titleZh, authors } = post as CoreContent<Blog> & {
+                titleZh?: string
+              }
               const authorList = authors || ['default']
               const authorDetails = authorList.map((author) => {
                 const authorResults = allAuthors.find((p) => p.slug === author)
@@ -48,7 +55,7 @@ export default function SimpleBlogLayout({ posts, title, subtitle, locale }: Sim
                   if (locale === 'zh') {
                     return author.name || ''
                   } else {
-                    return (author as any).nameEn || author.name || ''
+                    return (author as Authors & { nameEn?: string }).nameEn || author.name || ''
                   }
                 })
                 .filter(Boolean)
@@ -69,11 +76,14 @@ export default function SimpleBlogLayout({ posts, title, subtitle, locale }: Sim
               )
 
               return (
-                <li key={path} className="border-b border-gray-200 pb-12 last:border-b-0 dark:border-gray-800">
+                <li
+                  key={path}
+                  className="border-b border-gray-200 pb-12 last:border-b-0 dark:border-gray-800"
+                >
                   <article className="pt-12">
                     <time
                       dateTime={date}
-                      className="block text-sm text-gray-500 dark:text-gray-400 mb-4"
+                      className="mb-4 block text-sm text-gray-500 dark:text-gray-400"
                     >
                       {formattedDate}
                     </time>

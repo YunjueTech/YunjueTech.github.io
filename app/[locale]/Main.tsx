@@ -1,9 +1,11 @@
 import Link from '@/components/Link'
 import { getTranslation } from '@/data/translations'
 import type { Locale } from '@/lib/i18n'
+import { CoreContent } from 'pliny/utils/contentlayer'
+import type { Blog } from 'contentlayer/generated'
 
 interface MainProps {
-  posts: any[]
+  posts: CoreContent<Blog>[]
   locale: Locale
 }
 
@@ -116,4 +118,3 @@ export default function Main({ posts, locale }: MainProps) {
     </>
   )
 }
-

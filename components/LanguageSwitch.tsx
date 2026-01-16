@@ -38,4 +38,3 @@ const LanguageSwitch = () => {
 }
 
 export default LanguageSwitch
-

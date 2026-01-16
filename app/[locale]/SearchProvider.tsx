@@ -16,6 +16,7 @@ export const CustomSearchProvider = ({ children }: { children: React.ReactNode }
   const t = (key: string) => getTranslation(key, locale)
 
   // 使用类型断言来访问 kbarConfig，避免 TypeScript 类型检查错误
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const searchConfig = siteMetadata.search as any
   const searchDocumentsPath = searchConfig?.kbarConfig?.searchDocumentsPath || 'search.json'
 
@@ -42,4 +43,3 @@ export const CustomSearchProvider = ({ children }: { children: React.ReactNode }
     </>
   )
 }
-

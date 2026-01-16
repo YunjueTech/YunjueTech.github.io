@@ -10,4 +10,3 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
   const posts = allCoreContent(sortedPosts)
   return <Main posts={posts} locale={locale} />
 }
-

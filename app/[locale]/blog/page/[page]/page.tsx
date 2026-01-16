@@ -22,9 +22,7 @@ export const generateStaticParams = async () => {
   return paths
 }
 
-export default async function Page(props: {
-  params: Promise<{ page: string; locale: string }>
-}) {
+export default async function Page(props: { params: Promise<{ page: string; locale: string }> }) {
   const params = await props.params
   const locale = (params.locale || 'en') as Locale
   const t = (key: string) => getTranslation(key, locale)
@@ -54,4 +52,3 @@ export default async function Page(props: {
     />
   )
 }
-
