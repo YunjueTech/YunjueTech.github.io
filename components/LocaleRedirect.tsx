@@ -37,7 +37,8 @@ export default function LocaleRedirect() {
           }
         } else {
           // 3. 检查浏览器语言
-          const browserLang = navigator.language || (navigator as any).userLanguage
+          const navigatorWithUserLanguage = navigator as Navigator & { userLanguage?: string }
+          const browserLang = navigator.language || navigatorWithUserLanguage.userLanguage
           if (browserLang && browserLang.toLowerCase().includes('zh')) {
             locale = 'zh'
           }
