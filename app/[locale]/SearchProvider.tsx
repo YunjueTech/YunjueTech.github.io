@@ -15,12 +15,16 @@ export const CustomSearchProvider = ({ children }: { children: React.ReactNode }
   const locale = getLocaleFromPath(pathname) || defaultLocale
   const t = (key: string) => getTranslation(key, locale)
 
+  // 使用类型断言来访问 kbarConfig，避免 TypeScript 类型检查错误
+  const searchConfig = siteMetadata.search as any
+  const searchDocumentsPath = searchConfig?.kbarConfig?.searchDocumentsPath || 'search.json'
+
   return (
     <>
       <KBarEscButton />
       <KBarSearchProvider
         kbarConfig={{
-          searchDocumentsPath: siteMetadata.search?.kbarConfig?.searchDocumentsPath || 'search.json',
+          searchDocumentsPath: searchDocumentsPath,
           placeholder: '',
           defaultActions: [],
           onSearchDocumentsLoad(json) {
