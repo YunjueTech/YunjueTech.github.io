@@ -8,6 +8,14 @@ import { coreContent } from 'pliny/utils/contentlayer'
 import type { Authors } from 'contentlayer/generated'
 import type { Locale } from '@/lib/i18n'
 
+interface BlogWithTitleZh extends CoreContent<Blog> {
+  titleZh?: string
+}
+
+interface AuthorWithNameEn extends Authors {
+  nameEn?: string
+}
+
 interface SimpleBlogLayoutProps {
   posts: CoreContent<Blog>[]
   title: string
@@ -40,9 +48,8 @@ export default function SimpleBlogLayout({
         <div className="max-w-4xl">
           <ul className="space-y-0">
             {posts.map((post) => {
-              const { path, date, title, titleZh, authors } = post as CoreContent<Blog> & {
-                titleZh?: string
-              }
+              const postWithTitleZh = post as BlogWithTitleZh
+              const { path, date, title, titleZh, authors } = postWithTitleZh
               const authorList = authors || ['default']
               const authorDetails = authorList.map((author) => {
                 const authorResults = allAuthors.find((p) => p.slug === author)
@@ -55,7 +62,8 @@ export default function SimpleBlogLayout({
                   if (locale === 'zh') {
                     return author.name || ''
                   } else {
-                    return (author as Authors & { nameEn?: string }).nameEn || author.name || ''
+                    const authorWithNameEn = author as AuthorWithNameEn
+                    return authorWithNameEn.nameEn || author.name || ''
                   }
                 })
                 .filter(Boolean)

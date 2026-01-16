@@ -4,6 +4,13 @@ import { genPageMetadata } from 'app/seo'
 import SimpleBlogLayout from '@/layouts/SimpleBlogLayout'
 import { getTranslation } from '@/data/translations'
 import type { Locale } from '@/lib/i18n'
+import { locales } from '@/lib/i18n'
+
+export async function generateStaticParams() {
+  return locales.map((locale) => ({
+    locale,
+  }))
+}
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>

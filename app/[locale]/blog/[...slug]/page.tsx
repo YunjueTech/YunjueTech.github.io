@@ -15,6 +15,14 @@ import siteMetadata from '@/data/siteMetadata'
 import { notFound } from 'next/navigation'
 import type { Locale } from '@/lib/i18n'
 
+interface BlogWithTitleZh extends Blog {
+  titleZh?: string
+}
+
+interface AuthorWithNameEn extends Authors {
+  nameEn?: string
+}
+
 const defaultLayout = 'PostLayout'
 const layouts = {
   PostSimple,
@@ -39,16 +47,17 @@ export async function generateMetadata(props: {
   }
 
   // 根据语言选择标题
+  const postWithTitleZh = post as BlogWithTitleZh
   const displayTitle =
-    locale === 'zh' && (post as Blog & { titleZh?: string }).titleZh
-      ? (post as Blog & { titleZh?: string }).titleZh
-      : post.title
+    locale === 'zh' && postWithTitleZh.titleZh ? postWithTitleZh.titleZh : post.title
 
   // 根据语言选择作者名
   const authors = authorDetails.map((author) => {
-    return locale === 'zh'
-      ? author.name
-      : (author as Authors & { nameEn?: string }).nameEn || author.name
+    if (locale === 'zh') {
+      return author.name
+    }
+    const authorWithNameEn = author as AuthorWithNameEn
+    return authorWithNameEn.nameEn || author.name
   })
 
   const publishedAt = new Date(post.date).toISOString()
@@ -132,19 +141,18 @@ export default async function Page(props: { params: Promise<{ slug: string[]; lo
   const Layout = layouts[post.layout || defaultLayout]
 
   // 根据语言选择标题
+  const postWithTitleZh = post as BlogWithTitleZh
   const displayTitle =
-    locale === 'zh' && (post as Blog & { titleZh?: string }).titleZh
-      ? (post as Blog & { titleZh?: string }).titleZh
-      : post.title
+    locale === 'zh' && postWithTitleZh.titleZh ? postWithTitleZh.titleZh : post.title
 
   // 根据语言选择作者名
-  const displayAuthorDetails = authorDetails.map((author) => ({
-    ...author,
-    displayName:
-      locale === 'zh'
-        ? author.name
-        : (author as Authors & { nameEn?: string }).nameEn || author.name,
-  }))
+  const displayAuthorDetails = authorDetails.map((author) => {
+    const authorWithNameEn = author as AuthorWithNameEn
+    return {
+      ...author,
+      displayName: locale === 'zh' ? author.name : authorWithNameEn.nameEn || author.name,
+    }
+  })
 
   return (
     <>
@@ -154,7 +162,7 @@ export default async function Page(props: { params: Promise<{ slug: string[]; lo
       />
       <Layout
         content={{ ...mainContent, title: displayTitle } as CoreContent<Blog>}
-        authorDetails={displayAuthorDetails as (CoreContent<Authors> & { displayName?: string })[]}
+        authorDetails={displayAuthorDetails}
         next={next}
         prev={prev}
         locale={locale}

@@ -5,11 +5,19 @@ import Image from '@/components/Image'
 import Link from '@/components/Link'
 import { getTranslation } from '@/data/translations'
 import type { Locale } from '@/lib/i18n'
+import { locales } from '@/lib/i18n'
 
 export async function generateStaticParams() {
-  return productsData.map((product) => ({
-    slug: product.slug,
-  }))
+  const params: { slug: string; locale: string }[] = []
+  for (const locale of locales) {
+    for (const product of productsData) {
+      params.push({
+        slug: product.slug,
+        locale,
+      })
+    }
+  }
+  return params
 }
 
 export async function generateMetadata(props: {

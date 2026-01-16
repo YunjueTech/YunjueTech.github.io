@@ -15,17 +15,21 @@ export const CustomSearchProvider = ({ children }: { children: React.ReactNode }
   const locale = getLocaleFromPath(pathname) || defaultLocale
   const t = (key: string) => getTranslation(key, locale)
 
-  // 使用类型断言来访问 kbarConfig，避免 TypeScript 类型检查错误
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const searchConfig = siteMetadata.search as any
-  const searchDocumentsPath = searchConfig?.kbarConfig?.searchDocumentsPath || 'search.json'
+  // Type assertion for search config
+  interface SearchConfigWithKBar {
+    kbarConfig?: {
+      searchDocumentsPath?: string
+    }
+  }
+  const searchConfig = siteMetadata.search as SearchConfigWithKBar | undefined
+  const kbarConfig = searchConfig?.kbarConfig
 
   return (
     <>
       <KBarEscButton />
       <KBarSearchProvider
         kbarConfig={{
-          searchDocumentsPath: searchDocumentsPath,
+          searchDocumentsPath: kbarConfig?.searchDocumentsPath || 'search.json',
           defaultActions: [],
           onSearchDocumentsLoad(json) {
             return json.map((post: CoreContent<Blog>) => ({
