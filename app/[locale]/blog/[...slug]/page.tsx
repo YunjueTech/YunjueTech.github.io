@@ -19,10 +19,6 @@ interface AuthorWithNameEn extends Authors {
   nameEn?: string
 }
 
-interface BlogWithLocale extends Blog {
-  locale?: string
-}
-
 const defaultLayout = 'PostLayout'
 const layouts = {
   PostSimple,
@@ -39,7 +35,7 @@ export async function generateMetadata(props: {
 
   // Find post matching both slug and locale
   const post = allBlogs.find((p) => {
-    const postLocale = (p as BlogWithLocale).locale || 'en'
+    const postLocale = (p as Blog & { locale: string }).locale || 'en'
     return p.slug === slug && postLocale === locale
   })
 
@@ -102,8 +98,8 @@ export async function generateMetadata(props: {
 
 export const generateStaticParams = async () => {
   // Only generate params for posts that match their locale
-  const enPosts = allBlogs.filter((p) => ((p as BlogWithLocale).locale || 'en') === 'en')
-  const zhPosts = allBlogs.filter((p) => ((p as BlogWithLocale).locale || 'en') === 'zh')
+  const enPosts = allBlogs.filter((p) => ((p as Blog & { locale: string }).locale || 'en') === 'en')
+  const zhPosts = allBlogs.filter((p) => ((p as Blog & { locale: string }).locale || 'en') === 'zh')
 
   return enPosts
     .map((p) => ({
@@ -125,7 +121,7 @@ export default async function Page(props: { params: Promise<{ slug: string[]; lo
 
   // Find post matching both slug and locale
   const post = allBlogs.find((p) => {
-    const postLocale = (p as BlogWithLocale).locale || 'en'
+    const postLocale = (p as Blog & { locale: string }).locale || 'en'
     return p.slug === slug && postLocale === locale
   })
 
@@ -135,7 +131,7 @@ export default async function Page(props: { params: Promise<{ slug: string[]; lo
 
   // Filter posts by locale for prev/next navigation
   const filteredBlogs = allBlogs.filter((p) => {
-    const postLocale = (p as BlogWithLocale).locale || 'en'
+    const postLocale = (p as Blog & { locale: string }).locale || 'en'
     return postLocale === locale
   })
 

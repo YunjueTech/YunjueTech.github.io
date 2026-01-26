@@ -5,10 +5,6 @@ import type { Locale } from '@/lib/i18n'
 import { locales } from '@/lib/i18n'
 import type { Blog } from 'contentlayer/generated'
 
-interface BlogWithLocale extends Blog {
-  locale?: string
-}
-
 export async function generateStaticParams() {
   return locales.map((locale) => ({
     locale,
@@ -21,7 +17,7 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
 
   // Filter posts by locale
   const filteredBlogs = allBlogs.filter((post) => {
-    const postLocale = (post as BlogWithLocale).locale || 'en'
+    const postLocale = (post as Blog & { locale: string }).locale || 'en'
     return postLocale === locale
   })
   const sortedPosts = sortPosts(filteredBlogs)
