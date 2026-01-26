@@ -99,7 +99,6 @@ export const Blog = defineDocumentType(() => ({
   contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
-    titleZh: { type: 'string' },
     date: { type: 'date', required: true },
     tags: { type: 'list', of: { type: 'string' }, default: [] },
     lastmod: { type: 'date' },
@@ -113,6 +112,37 @@ export const Blog = defineDocumentType(() => ({
   },
   computedFields: {
     ...computedFields,
+    // 从文件名提取语言代码（.en.mdx 或 .zh.mdx）
+    locale: {
+      type: 'string',
+      resolve: (doc) => {
+        const fileName = doc._raw.sourceFileName
+        if (fileName.endsWith('.en.mdx')) return 'en'
+        if (fileName.endsWith('.zh.mdx')) return 'zh'
+        // 如果没有语言后缀，默认为英文（向后兼容）
+        return 'en'
+      },
+    },
+    // 基础 slug（移除语言后缀）
+    slug: {
+      type: 'string',
+      resolve: (doc) => {
+        let path = doc._raw.flattenedPath.replace(/^.+?(\/)/, '')
+        // 移除 .en 或 .zh 后缀
+        path = path.replace(/\.(en|zh)$/, '')
+        return path
+      },
+    },
+    // 基础 path（移除语言后缀）
+    path: {
+      type: 'string',
+      resolve: (doc) => {
+        let path = doc._raw.flattenedPath
+        // 移除 .en 或 .zh 后缀
+        path = path.replace(/\.(en|zh)$/, '')
+        return path
+      },
+    },
     structuredData: {
       type: 'json',
       resolve: (doc) => ({

@@ -1,0 +1,90 @@
+---
+title: 'Yunjue Agent—An In-Situ Self-Evolving Agent for Open-Ended Tasks'
+date: '2026-01-26'
+lastmod: '2026-01-26'
+tags: []
+draft: false
+summary: 'SOTA In-Situ Self-Evolving Agents'
+authors:
+  - default
+---
+
+
+In research on AI Agents, traditional systems often face the dual challenges of "continuous task distribution drift" and "scarcity of external supervision" when confronting Open-ended Environments. Agents relying on static tool libraries or offline training struggle to adapt to the dynamic demands of the real world.
+
+To address this, we introduce **Yunjue Agent**. This is a technical report on the **In-Situ Self-Evolution** paradigm. Under Zero-Start conditions, the system reconstructs discrete reasoning interactions into a continuous stream of experience, enabling real-time "distillation" and reuse of capabilities.
+
+This article provides an in-depth analysis of the paper's core highlights, the evolution mechanism, and the outlook for future Agent research.
+
+## Core Highlights
+
+### 1. In-situ Self-evolving: A New Paradigm where Reasoning is Evolution
+
+Yunjue Agent breaks the traditional static boundary of "offline training-online deployment." We propose an **In-Situ Self-Evolving** framework that establishes an internal feedback loop mechanism requiring no Ground Truth to address the problem of continuous task distribution drift in Open-ended environments.
+
+* **Real-time:** Evolution is not measured in "epochs" but in single Queries. After processing the $t$-th problem, the system immediately uses the experience to modify the system configuration ($\mathcal{M}_{t}$), which is directly applied to solving the $t+1$-th problem.
+* **Unsupervised Evolution:** The system does not rely on external labeled data. It real-time "distills" short-term reasoning execution feedback into long-term reusable capabilities, achieving continuous exploration and adaptive iteration of unknown domain boundaries.
+
+### 2. SOTA Performance under Zero-Start Conditions
+
+To verify the system's limit capabilities, we established a rigorous **Tabula Rasa (Zero-Start)** experimental environment: **The system is initialized with an empty tool library.**
+
+This means the Agent must rely entirely on generation, verification, and induction during inference to build capabilities. Experimental results show:
+* **Significant Gains:** Yunjue Agent achieved significant absolute capability gains across five benchmarks relative to the Backend model (e.g., Gemini 3 Pro). For instance, it achieved a **+17.4%** increase on DeepSearchQA.
+* **Ranked 2nd Globally on HLE:** On the highly difficult "Humanity's Last Exam" (HLE) benchmark, our performance is second only to OpenAI's GPT-5.2 Pro.
+* **Emergence of General Primitives:** Analysis shows the system spontaneously developed high-frequency general primitives (such as `search_web`, `evaluate_math_expression`), proving the feasibility of bootstrapping a cross-domain general capability layer from scratch.
+
+### 3. Tool-First Evolution Path
+
+Among the three pillars of an Agent—Workflow, Memory, and Tool—we argue that **Tool Evolution** holds an irreplaceable "First Principles" status in unsupervised scenarios.
+
+* **Objective Binary Feedback:** Compared to the potential hallucinations of Memory or the subjectivity of Workflow evaluation, tool execution provides the most valuable discriminative signal—code either runs successfully or returns an error (Traceback). This constitutes an objective internal supervision signal.
+* **Definition of Capability Boundaries:** Tools directly define "what the Agent can do."
+* **Avoiding Policy Bias:** By prioritizing tool evolution, we avoid solidifying unreliable experiences into erroneous memories or workflows in the early stages. Higher-level summarization and Workflow optimization should only be considered after the tool library has converged.
+
+### 4. Fully Reproducible: A White-Box Research Foundation
+
+To transform "black-box Agent results" into traceable and comparable public research assets, we adhere to **full open-sourcing and reproducibility**:
+
+* **Full Artifacts:** We have open-sourced the complete code, running scripts for all Benchmarks, and evaluation alignment methods.
+* **Evolution Traces:** We provide versioned artifacts for every step of tool generation, modification, and merging, as well as full interaction logs.
+* **Audit and Research:** Researchers can precisely audit which tools contributed to capability growth, which failures were fixed, and which tools were deprecated, enabling more granular research such as tool quality discrimination, convergence analysis, and evolution efficiency.
+
+---
+
+## Deep Dive: In-situ Self-evolution vs. Ordinary Self-evolution
+
+To clearly define the technical positioning of Yunjue Agent, we compare In-situ Self-evolving with currently mainstream Self-evolving Agents:
+
+| Dimension | Ordinary Self-evolving Agent | In-situ Self-evolving Agent (Yunjue) |
+| :--- | :--- | :--- |
+| **Phase** | Usually occurs during the **Training Process** or is an offline optimization process. | Occurs during the **Inference Phase**, i.e., while the system is actually running and processing user requests. |
+| **Signals** | Relies on **external supervision signals** or **Ground Truth**. Maximizes an objective function (e.g., accuracy) by comparing output with standard answers. | **No external supervision, no Ground Truth**. Relies on "internal feedback" (e.g., tool execution results) or experience gained from the previous interaction for self-adjustment. |
+| **Mechanism** | Iterative optimization (Iterative/Batch) for specific tasks or datasets. | **Dynamic & Continuous**. A "learning by doing" mode where experience takes effect immediately. |
+
+---
+
+## Future Work
+
+Although this study verifies the effectiveness of in-situ self-evolution through tool synthesis, this is only the first step toward more advanced autonomous agents. We identified several key directions for future research in the paper:
+
+### 1. Paradigm Shift: Towards System-Level Pre-training for Agents
+The clear convergence curve of the tool library suggests that "problem-solving capability" is not just a collection of ad-hoc heuristics, but a learnable, distillable general pattern.
+This heralds a **"Pre-training + Post-training"** era for Agent systems, similar to LLMs. We envision future multi-agent systems undergoing system-level pre-training on massive, broad-spectrum task datasets to distill a converged **"Foundation Toolset"** before deployment. Such pre-trained Agents will possess intrinsic generalization capabilities, solving new downstream tasks by combining existing reliable tools, thereby minimizing the cost of test-time evolution.
+
+### 2. Co-evolution of Memory and Workflow
+Current frameworks primarily validate self-evolution through tool generation. However, for scenarios requiring high personalization (like personal assistants) or complex process management (like deep research), tools alone are insufficient.
+A key future direction is extending evolution mechanisms to the **Co-evolution** of **Memory Architectures** and **Workflow Strategies**, enabling the system to synchronize its internal state management and execution logic with the growth of its functional capabilities.
+
+### 3. Evolution Stability and Regularization
+Due to the randomness of LLM generation, toolsets may vary across different experimental runs. Ensuring consistent convergence of the tool library is critical for system reliability. Future work will focus on developing regularization strategies to ensure the determinism of the evolution process in open environments.
+
+### 4. Optimization of Parallel Batch Evolution
+Our Batch Evolution strategy still has room for optimization:
+* **Curriculum Learning Effect:** Researching optimal Query ordering to avoid hindering the formation of foundational primitives by tackling difficult tasks too early.
+* **Intra-Batch Diversity Trade-off:** Balancing "Best-of-N quality assurance from low diversity" with "evolution efficiency from high diversity."
+* **Adaptive Scheduling:** Developing autonomous Agents capable of dynamically adjusting Batch Size based on convergence signals.
+
+---
+
+*To access the full paper, code, and detailed Traces, please visit our [Github Code](https://github.com/YunjueTech/Yunjue-Agent/tree/main).*

@@ -28,7 +28,15 @@ export default async function BlogPage(props: { params: Promise<{ locale: string
 
   // Filter out drafts in production
   const isProduction = process.env.NODE_ENV === 'production'
-  const filteredBlogs = isProduction ? allBlogs.filter((post) => post.draft !== true) : allBlogs
+  let filteredBlogs = isProduction ? allBlogs.filter((post) => post.draft !== true) : allBlogs
+  
+  // Filter by locale - only show posts matching the current language
+  filteredBlogs = filteredBlogs.filter((post) => {
+    // Access locale from computed field
+    const postLocale = (post as any).locale || 'en'
+    return postLocale === locale
+  })
+  
   const posts = allCoreContent(sortPosts(filteredBlogs))
 
   return (

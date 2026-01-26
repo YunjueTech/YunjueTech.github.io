@@ -13,7 +13,14 @@ export async function generateStaticParams() {
 export default async function Page(props: { params: Promise<{ locale: string }> }) {
   const params = await props.params
   const locale = (params.locale || 'en') as Locale
-  const sortedPosts = sortPosts(allBlogs)
+  
+  // Filter posts by locale
+  const filteredBlogs = allBlogs.filter((post) => {
+    const postLocale = (post as any).locale || 'en'
+    return postLocale === locale
+  })
+  
+  const sortedPosts = sortPosts(filteredBlogs)
   const posts = allCoreContent(sortedPosts)
   return <Main posts={posts} locale={locale} />
 }

@@ -28,23 +28,23 @@ const translations: TranslationObject = {
     whoWeAre: {
       title: { en: 'Who We Are', zh: '我们是谁' },
       content1: {
-        en: 'Yunjue Technology is a cutting-edge technology company dedicated to building Self-Evolving AGI (Artificial General Intelligence).',
-        zh: '云玦科技 (Yunjue Technology) 是一家致力于构建自进化通用智能体 (Self-Evolving AGI) 的前沿科技公司。',
+        en: 'Yunjue Technology is a cutting-edge technology company dedicated to building Self-Evolving AGI (Artificial General Intelligence) and wearable hardware.',
+        zh: '云玦科技 (Yunjue Technology) 是一家致力于构建自进化通用智能体 (Self-Evolving AGI)和可穿戴硬件载体的前沿科技公司。',
       },
       content2: {
         en: 'We are a group of tireless explorers, with members from top AI laboratories and engineering teams. We are not satisfied with "static" large models—those parameter matrices frozen at the moment of training completion. We believe that true intelligence lies not in how much past knowledge is stored, but in the ability to adapt, learn, and create tools when facing an unknown future.',
         zh: '我们是一群不知疲倦的探索者，成员来自顶尖的 AI 实验室与工程团队。我们不满足于"静态"的大模型——那些被冻结在训练完成那一刻的参数矩阵。我们相信，真正的智能不在于存储了多少过去的知识，而在于面对未知未来时，适应、学习并创造工具的能力。',
       },
       quote: {
-        en: '"Cloud" symbolizes the infinite boundaries of computation, "Jue" represents the decisiveness and wisdom of decision-making. Yunjue is to find the definitive intelligent solution within infinite computation.',
+        en: '"Yun" symbolizes the infinite boundaries of computation, "Jue" represents the decisiveness and wisdom of decision-making. Yunjue is to find the definitive intelligent solution within infinite computation.',
         zh: '"云"象征着计算的无限边界，"玦"代表着决策的果敢与智慧。云玦，即是在无限的计算中，寻找确定的智能解。',
       },
     },
     vision: {
       title: { en: 'Our Vision', zh: '愿景' },
       subtitle: {
-        en: 'To build the substrate for continuous evolution in synthetic intelligence.',
-        zh: '构建合成智能持续进化的基石。',
+        en: 'To build the substrate for continuous evolution in synthetic intelligence, and wearable hardware.',
+        zh: '构建合成智能持续进化的基石，并打造可穿戴硬件载体。',
       },
       content: {
         en: 'We are committed to giving every intelligent agent "vitality". It is no longer a mechanical Q&A machine, but a digital life that can grow autonomously, self-correct, and self-optimize as user needs change and world information updates.',
@@ -56,15 +56,15 @@ const translations: TranslationObject = {
       fromStatic: {
         title: { en: 'From Static to Dynamic', zh: '从静态到动态' },
         content: {
-          en: 'Only learning at inference time (Test-Time) is true intelligence.',
-          zh: '只有在推理时（Test-Time）的学习，才是真正的智能。',
+          en: 'Only learning at inference time (Test-Time) is true self-evolving intelligence.',
+          zh: '只有在推理时（Test-Time）的学习，才是真正的自我进化智能。',
         },
       },
       fromManual: {
         title: { en: 'From Manual to Autonomous', zh: '从手动到自主' },
         content: {
-          en: 'We refuse to pile up artificial rules. If an intelligent agent cannot write code to solve new problems on its own, it does not deserve to be called an intelligent agent.',
-          zh: '我们拒绝堆砌人工规则。如果智能体不能自己写代码解决新问题，它就不配被称为智能体。',
+          en: 'We refuse to pile up artificial rules. Intelligent agents should self-solve new problems and expand their capabilities.',
+          zh: '我们拒绝堆砌人工规则。智能体应当自我解决新问题，并拓展能力边界。',
         },
       },
       openConvergent: {
@@ -97,7 +97,7 @@ const translations: TranslationObject = {
       en: 'We are building AI systems that push technical boundaries while delivering real value to as many people as possible. Our team combines rigorous engineering practices with creative exploration, and we are looking for like-minded partners to realize this vision together.',
       zh: '我们正在构建能够突破技术边界、同时为尽可能多的人创造真正价值的 AI 系统。我们的团队结合严谨的工程实践与创造性探索，我们正在寻找志同道合的伙伴来共同实现这一愿景。',
     },
-    openPositions: { en: 'Open Positions', zh: '开放职位' },
+    openPositions: { en: 'Open Positions(Hangzhou, China)', zh: '开放职位（杭州）' },
     howToApply: { en: 'How to Apply', zh: '如何申请' },
     applyContent1: {
       en: 'Please send your resume to:',

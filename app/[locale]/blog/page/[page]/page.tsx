@@ -26,7 +26,14 @@ export default async function Page(props: { params: Promise<{ page: string; loca
   const params = await props.params
   const locale = (params.locale || 'en') as Locale
   const t = (key: string) => getTranslation(key, locale)
-  const posts = allCoreContent(sortPosts(allBlogs))
+  
+  // Filter by locale - only show posts matching the current language
+  const filteredBlogs = allBlogs.filter((post) => {
+    const postLocale = (post as any).locale || 'en'
+    return postLocale === locale
+  })
+  
+  const posts = allCoreContent(sortPosts(filteredBlogs))
   const pageNumber = parseInt(params.page as string)
   const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE)
 

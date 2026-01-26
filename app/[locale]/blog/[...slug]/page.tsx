@@ -15,10 +15,6 @@ import siteMetadata from '@/data/siteMetadata'
 import { notFound } from 'next/navigation'
 import type { Locale } from '@/lib/i18n'
 
-interface BlogWithTitleZh extends Blog {
-  titleZh?: string
-}
-
 interface AuthorWithNameEn extends Authors {
   nameEn?: string
 }
@@ -36,20 +32,25 @@ export async function generateMetadata(props: {
   const params = await props.params
   const locale = params.locale as Locale
   const slug = decodeURI(params.slug.join('/'))
-  const post = allBlogs.find((p) => p.slug === slug)
+  
+  // Find post matching both slug and locale
+  const post = allBlogs.find((p) => {
+    const postLocale = (p as any).locale || 'en'
+    return p.slug === slug && postLocale === locale
+  })
+  
+  if (!post) {
+    return
+  }
+  
   const authorList = post?.authors || ['default']
   const authorDetails = authorList.map((author) => {
     const authorResults = allAuthors.find((p) => p.slug === author)
     return coreContent(authorResults as Authors)
   })
-  if (!post) {
-    return
-  }
 
-  // 根据语言选择标题
-  const postWithTitleZh = post as BlogWithTitleZh
-  const displayTitle =
-    locale === 'zh' && postWithTitleZh.titleZh ? postWithTitleZh.titleZh : post.title
+  // Use the post's title directly
+  const displayTitle = post.title
 
   // 根据语言选择作者名
   const authors = authorDetails.map((author) => {
@@ -97,13 +98,17 @@ export async function generateMetadata(props: {
 }
 
 export const generateStaticParams = async () => {
-  return allBlogs
+  // Only generate params for posts that match their locale
+  const enPosts = allBlogs.filter((p) => ((p as any).locale || 'en') === 'en')
+  const zhPosts = allBlogs.filter((p) => ((p as any).locale || 'en') === 'zh')
+  
+  return enPosts
     .map((p) => ({
       slug: p.slug.split('/').map((name) => decodeURI(name)),
       locale: 'en',
     }))
     .concat(
-      allBlogs.map((p) => ({
+      zhPosts.map((p) => ({
         slug: p.slug.split('/').map((name) => decodeURI(name)),
         locale: 'zh',
       }))
@@ -114,16 +119,29 @@ export default async function Page(props: { params: Promise<{ slug: string[]; lo
   const params = await props.params
   const locale = params.locale as Locale
   const slug = decodeURI(params.slug.join('/'))
-  // Filter out drafts in production
-  const sortedCoreContents = allCoreContent(sortPosts(allBlogs))
-  const postIndex = sortedCoreContents.findIndex((p) => p.slug === slug)
-  if (postIndex === -1) {
+  
+  // Find post matching both slug and locale
+  const post = allBlogs.find((p) => {
+    const postLocale = (p as any).locale || 'en'
+    return p.slug === slug && postLocale === locale
+  })
+  
+  if (!post) {
     return notFound()
   }
-
-  const prev = sortedCoreContents[postIndex + 1]
-  const next = sortedCoreContents[postIndex - 1]
-  const post = allBlogs.find((p) => p.slug === slug) as Blog
+  
+  // Filter posts by locale for prev/next navigation
+  const filteredBlogs = allBlogs.filter((p) => {
+    const postLocale = (p as any).locale || 'en'
+    return postLocale === locale
+  })
+  
+  const sortedCoreContents = allCoreContent(sortPosts(filteredBlogs))
+  const postIndex = sortedCoreContents.findIndex((p) => p.slug === slug)
+  
+  const prev = postIndex >= 0 && postIndex < sortedCoreContents.length - 1 ? sortedCoreContents[postIndex + 1] : undefined
+  const next = postIndex > 0 ? sortedCoreContents[postIndex - 1] : undefined
+  
   const authorList = post?.authors || ['default']
   const authorDetails = authorList.map((author) => {
     const authorResults = allAuthors.find((p) => p.slug === author)
@@ -140,10 +158,8 @@ export default async function Page(props: { params: Promise<{ slug: string[]; lo
 
   const Layout = layouts[post.layout || defaultLayout]
 
-  // 根据语言选择标题
-  const postWithTitleZh = post as BlogWithTitleZh
-  const displayTitle =
-    locale === 'zh' && postWithTitleZh.titleZh ? postWithTitleZh.titleZh : post.title
+  // Use the post's title directly (no need for titleZh anymore)
+  const displayTitle = post.title
 
   // 根据语言选择作者名
   const displayAuthorDetails = authorDetails.map((author) => {
