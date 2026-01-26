@@ -4,6 +4,11 @@ import { allBlogs } from 'contentlayer/generated'
 import { notFound } from 'next/navigation'
 import { getTranslation } from '@/data/translations'
 import type { Locale } from '@/lib/i18n'
+import type { Blog } from 'contentlayer/generated'
+
+interface BlogWithLocale extends Blog {
+  locale?: string
+}
 
 const POSTS_PER_PAGE = 5
 
@@ -26,13 +31,12 @@ export default async function Page(props: { params: Promise<{ page: string; loca
   const params = await props.params
   const locale = (params.locale || 'en') as Locale
   const t = (key: string) => getTranslation(key, locale)
-  
+
   // Filter by locale - only show posts matching the current language
   const filteredBlogs = allBlogs.filter((post) => {
-    const postLocale = (post as any).locale || 'en'
+    const postLocale = (post as BlogWithLocale).locale || 'en'
     return postLocale === locale
   })
-  
   const posts = allCoreContent(sortPosts(filteredBlogs))
   const pageNumber = parseInt(params.page as string)
   const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE)
