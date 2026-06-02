@@ -113,9 +113,9 @@ export default function TeamEnPage() {
                 </p>
                 <p className="mt-4 text-base leading-relaxed text-gray-700 dark:text-gray-300">
                   A researcher focused on pretraining, agents, and inference acceleration. Three
-                  first-author works defined cornerstones today's mainstream LLMs depend on: the
-                  pretraining paradigm (MTP), inference acceleration (KV Cache optimization), and
-                  the agent paradigm (LLM orchestrating multimodal tools).
+                  works defined cornerstones today's mainstream LLMs depend on: the pretraining
+                  paradigm (MTP), inference acceleration (KV Cache optimization), and the agent
+                  paradigm (LLM orchestrating multimodal tools).
                 </p>
                 <ul className="mt-4 list-disc space-y-2 pl-6 text-base leading-relaxed text-gray-700 dark:text-gray-300">
                   <li>

@@ -108,7 +108,7 @@ export default function TeamZhPage() {
                 </p>
                 <p className="mt-4 text-base leading-relaxed text-gray-700 dark:text-gray-300">
                   下一代 AI 架构研究者，专注于预训练、智能体与模型推理加速。
-                  三件第一作者代表作奠定了今天主流 LLM 所依赖的核心基石：
+                  三件代表性工作奠定了今天主流 LLM 所依赖的核心基石：
                   预训练范式（MTP）、推理加速（KV Cache 优化）、智能体范式（LLM 调度多模态工具）。
                 </p>
                 <ul className="mt-4 list-disc space-y-2 pl-6 text-base leading-relaxed text-gray-700 dark:text-gray-300">
