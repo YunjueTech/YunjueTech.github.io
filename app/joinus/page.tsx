@@ -4,7 +4,8 @@ import { Hero, Section } from '@/components/PageBlocks'
 
 export const metadata = genPageMetadata({
   title: '加入我们',
-  description: '云玦科技招聘：后端/全栈工程师、AI 产品经理、iOS 工程师、智能体算法工程师、硬件产品经理。',
+  description:
+    '云玦科技招聘：后端/全栈工程师、AI 产品经理、iOS 工程师、智能体算法工程师、硬件产品经理。',
 })
 
 const openRoles = [
@@ -71,7 +72,7 @@ export default function JoinUsPage() {
           {openRoles.map((role) => (
             <div
               key={role.title}
-              className="flex flex-col gap-4 rounded-2xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-950 md:flex-row md:items-start"
+              className="flex flex-col gap-4 rounded-2xl border border-gray-200 bg-white p-6 md:flex-row md:items-start dark:border-gray-800 dark:bg-gray-950"
             >
               <div className="w-16 shrink-0">
                 <span className="inline-block rounded-md bg-gray-100 px-2 py-1 text-xs font-semibold text-gray-600 dark:bg-gray-800 dark:text-gray-400">
@@ -107,7 +108,8 @@ export default function JoinUsPage() {
           ))}
         </div>
         <p className="mt-4 text-sm text-gray-500 dark:text-gray-500">
-          方向包括硬件 v1 流片、端侧隐私分流、Realtime 多模态路径、Human-Centric World Model 自训等各阶段里程碑。
+          方向包括硬件 v1 流片、端侧隐私分流、Realtime 多模态路径、Human-Centric World Model
+          自训等各阶段里程碑。
         </p>
       </Section>
 
@@ -123,7 +125,9 @@ export default function JoinUsPage() {
             <tbody className="text-sm text-gray-700 dark:text-gray-300">
               <tr className="border-t border-gray-200 dark:border-gray-800">
                 <td className="p-4 font-medium">兴趣</td>
-                <td className="p-4">自己用智能穿戴 / 量化生活 / 个人 AI 的人；用产品，不只是做产品</td>
+                <td className="p-4">
+                  自己用智能穿戴 / 量化生活 / 个人 AI 的人；用产品，不只是做产品
+                </td>
               </tr>
               <tr className="border-t border-gray-200 dark:border-gray-800">
                 <td className="p-4 font-medium">工具链</td>

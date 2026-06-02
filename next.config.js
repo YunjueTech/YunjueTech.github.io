@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const { withContentlayer } = require('next-contentlayer2')
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
@@ -54,7 +55,8 @@ const securityHeaders = [
   },
 ]
 
-const output = process.env.EXPORT ? 'export' : undefined
+const isStaticExport = Boolean(process.env.EXPORT)
+const output = isStaticExport ? 'export' : undefined
 const basePath = process.env.BASE_PATH || undefined
 const unoptimized = process.env.UNOPTIMIZED ? true : undefined
 
@@ -81,14 +83,16 @@ module.exports = () => {
       ],
       unoptimized,
     },
-    async headers() {
-      return [
-        {
-          source: '/(.*)',
-          headers: securityHeaders,
-        },
-      ]
-    },
+    ...(!isStaticExport && {
+      async headers() {
+        return [
+          {
+            source: '/(.*)',
+            headers: securityHeaders,
+          },
+        ]
+      },
+    }),
     webpack: (config, options) => {
       config.module.rules.push({
         test: /\.svg$/,

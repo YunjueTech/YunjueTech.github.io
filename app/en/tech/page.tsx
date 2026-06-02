@@ -122,8 +122,8 @@ Early Fusion (Yunjue)
             </h3>
             <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
               "Heart rate rose 3 seconds before that sentence was spoken" — heart rate, vision,
-              voiceprint shifts, and dialogue aligned at the raw-signal layer construct causal chains
-              language alone never produces.
+              voiceprint shifts, and dialogue aligned at the raw-signal layer construct causal
+              chains language alone never produces.
             </p>
           </div>
         </div>
@@ -496,11 +496,11 @@ Geek edition (developers / power users)
             hardware, not a phone app or smart speaker.
             <br />
             <br />
-            Yunjue positions this hardware as an{' '}
-            <strong>external sensory system</strong>: a dual-mic array that always listens, a
-            camera that captures key frames on trigger, and heart rate / HRV / IMU / skin
-            temperature running continuously — perceiving signals you can't perceive yourself, and
-            handing them to the cloud-side external prefrontal cortex for analysis and reflection.
+            Yunjue positions this hardware as an <strong>external sensory system</strong>: a
+            dual-mic array that always listens, a camera that captures key frames on trigger, and
+            heart rate / HRV / IMU / skin temperature running continuously — perceiving signals you
+            can't perceive yourself, and handing them to the cloud-side external prefrontal cortex
+            for analysis and reflection.
             <br />
             <br />
             Yunjue today validates the main loop on Apple Watch; in-house multimodal hardware v1 is

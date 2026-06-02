@@ -17,16 +17,17 @@ export default function ProductsPage() {
         subtitle={
           <>
             云玦不是一个 App，也不是一块手表 —— 它是一个跨随身硬件 / 移动端 / 云端的个人智能体。
-            随身硬件是<strong>外置感官系统</strong>，替你持续采集你感知不到的多模态信号；
-            云端 AI 是<strong>外置前额叶</strong>，把信号转化为理解、反思与个性化决策支持，
+            随身硬件是<strong>外置感官系统</strong>，替你持续采集你感知不到的多模态信号； 云端 AI 是
+            <strong>外置前额叶</strong>，把信号转化为理解、反思与个性化决策支持，
             并由自进化沙箱每晚自动成长，长出每个人专属的随身智能体。
           </>
         }
       />
 
-      <Section eyebrow="Demo视频" >
+      <Section eyebrow="Demo视频">
         <div className="overflow-hidden rounded-2xl">
           <iframe
+            title="云玦产品演示视频"
             src="https://player.bilibili.com/player.html?bvid=BV1vHVz6BEFE&page=1&high_quality=1&danmaku=0"
             scrolling="no"
             frameBorder="0"
@@ -66,7 +67,6 @@ export default function ProductsPage() {
           </PillarCard>
         </div>
       </Section>
-
 
       <Section eyebrow="加入早期内测" title="像米罗一样试用我们的产品">
         <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">

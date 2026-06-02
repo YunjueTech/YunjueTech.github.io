@@ -57,10 +57,10 @@ Early Fusion（云玦）
           但
           <strong>
             "心率（稠密数值）+ IMU（稠密数值）+ HRV（稀疏数值）+ 音频（稠密连续波形）+
-            图像（稀疏帧）+   知识图谱（图结构）"
+            图像（稀疏帧）+ 知识图谱（图结构）"
           </strong>
-          多种模态的混合输入，在公开互联网上不存在足量训练数据 ——
-          因为只有持续戴着多模态采集设备、 24 小时收集的人才有。
+          多种模态的混合输入，在公开互联网上不存在足量训练数据 —— 因为只有持续戴着多模态采集设备、
+          24 小时收集的人才有。
         </p>
         <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
           这是云玦绕开主流模型正面战场的"新训练场"。
@@ -71,8 +71,8 @@ Early Fusion（云玦）
 
       <Section eyebrow="Early Fusion 当下边界" title="Late Fusion 永远抓不到的，Early Fusion 能">
         <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-          以下三种能力都依赖心率、视觉、声纹、对话在<strong>原始信号层</strong>精确对齐，
-          用 Late Fusion 先把每条模态压成文字再拼接，这些信息全部丢失。
+          以下三种能力都依赖心率、视觉、声纹、对话在<strong>原始信号层</strong>精确对齐， 用 Late
+          Fusion 先把每条模态压成文字再拼接，这些信息全部丢失。
         </p>
         <div className="grid gap-6 md:grid-cols-3">
           <div className="rounded-2xl border border-gray-200 p-6 dark:border-gray-800">
@@ -113,8 +113,8 @@ Early Fusion（云玦）
           </div>
         </div>
         <p className="text-sm text-gray-500 dark:text-gray-500">
-          这是 Early Fusion 的当下边界，也是积累"人类行为结果"标注数据的入口——
-          它们共同构成未来 Human-Centric World Model 的训练真值来源。
+          这是 Early Fusion 的当下边界，也是积累"人类行为结果"标注数据的入口—— 它们共同构成未来
+          Human-Centric World Model 的训练真值来源。
         </p>
       </Section>
 
@@ -422,8 +422,8 @@ Early Fusion（云玦）
             <br />
             <br />
             云玦的长期目标是填补这个空白——把心率、IMU、声音、视觉、对话内容、
-            个人画像、关系图谱在原始信号层对齐，训练真正<strong>以人为中心的多模态基础模型</strong>。
-            它的训练目标不是"通用世界知识"，而是"一个具体的人在特定时刻的状态、意图与需求"。
+            个人画像、关系图谱在原始信号层对齐，训练真正<strong>以人为中心的多模态基础模型</strong>
+            。 它的训练目标不是"通用世界知识"，而是"一个具体的人在特定时刻的状态、意图与需求"。
             <br />
             <br />
             这个模型一旦成立，具身智能、人形机器人、消费级个人 AI 都将拥有一个真正理解人的底座——
@@ -445,16 +445,16 @@ Early Fusion（云玦）
             把这些信号交给云端外置前额叶做分析与反思。
             <br />
             <br />
-            云玦当前以 Apple Watch 验证主链路；自研多模态硬件 v1 进行中，
-            围绕"双麦 + 心率 / IMU + 隐私指示灯与硬件开关一体"展开，
-            使"原始数据是否出端"成为用户的主动选择。
+            云玦当前以 Apple Watch 验证主链路；自研多模态硬件 v1 进行中， 围绕"双麦 + 心率 / IMU +
+            隐私指示灯与硬件开关一体"展开， 使"原始数据是否出端"成为用户的主动选择。
           </PillarCard>
         </div>
       </Section>
 
       <Section eyebrow="继续阅读" title="看产品形态或加入我们，也可以先看三条赛道的完整叙事">
         <p className="text-base text-gray-600 dark:text-gray-400">
-          Early Fusion → 自进化智能体 → Human-Centric World Model，三条赛道都在产品页有对应节奏说明。
+          Early Fusion → 自进化智能体 → Human-Centric World
+          Model，三条赛道都在产品页有对应节奏说明。
         </p>
         <div className="flex flex-wrap gap-4">
           <Link

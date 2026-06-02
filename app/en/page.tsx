@@ -160,9 +160,9 @@ export default function HomeEn() {
       <Section eyebrow="Roadmap" title="Three tracks running in parallel">
         <div className="space-y-4 text-lg leading-relaxed text-gray-700 dark:text-gray-300">
           <p>
-            <strong className="text-gray-900 dark:text-gray-100">Now</strong> — Always-on hardware
-            → iOS → cloud main loop is production-stable; the full self-evolution loop is live;
-            deep internal trial is underway.
+            <strong className="text-gray-900 dark:text-gray-100">Now</strong> — Always-on hardware →
+            iOS → cloud main loop is production-stable; the full self-evolution loop is live; deep
+            internal trial is underway.
           </p>
           <p>
             <strong className="text-gray-900 dark:text-gray-100">Near term</strong> — Scale the
@@ -198,10 +198,10 @@ export default function HomeEn() {
         title="We're building a team that can lead long-horizon tracks end-to-end"
       >
         <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-          Hardware, on-device multimodal, Realtime, Self-Evolving Agent, self-trained
-          Human-Centric World Model — for every track, we're hiring people who can take full
-          ownership end-to-end. Especially welcome: peers who already live with quantified-self,
-          smart wearables, or personal AI.
+          Hardware, on-device multimodal, Realtime, Self-Evolving Agent, self-trained Human-Centric
+          World Model — for every track, we're hiring people who can take full ownership end-to-end.
+          Especially welcome: peers who already live with quantified-self, smart wearables, or
+          personal AI.
         </p>
         <div className="mt-8 flex flex-wrap gap-4">
           <Link

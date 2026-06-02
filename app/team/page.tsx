@@ -119,8 +119,8 @@ export default function TeamZhPage() {
                   </li>
                   <li>
                     <strong>EL-Attention（KV Cache 优化）</strong> —— 业界首批 KV Cache
-                    优化研究，集成入 Huggingface
-                    Transformers；微软工程院以此为 OpenAI GPT-3 带来 5–10× 输出速度提升。
+                    优化研究，集成入 Huggingface Transformers；微软工程院以此为 OpenAI GPT-3 带来
+                    5–10× 输出速度提升。
                   </li>
                   <li>
                     <strong>Visual ChatGPT（核心作者）</strong> —— 开源一周获 3 万 Star，开创了以

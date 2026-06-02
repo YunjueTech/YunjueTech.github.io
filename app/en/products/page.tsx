@@ -30,6 +30,7 @@ export default function ProductsEnPage() {
       <Section eyebrow="Demo video">
         <div className="overflow-hidden rounded-2xl">
           <iframe
+            title="Yunjue product demo video"
             src="https://player.bilibili.com/player.html?bvid=BV1vHVz6BEFE&page=1&high_quality=1&danmaku=0"
             scrolling="no"
             frameBorder="0"

@@ -60,8 +60,8 @@ export default function JoinUsEnPage() {
         title={<>Join us</>}
         subtitle={
           <>
-            Yunjue is working on three mutually-dependent things: a Human-Centric World Model,
-            a self-evolving agent, and an always-on multimodal hardware platform. We're looking for
+            Yunjue is working on three mutually-dependent things: a Human-Centric World Model, a
+            self-evolving agent, and an always-on multimodal hardware platform. We're looking for
             people who share the passion to build this new world with us.
           </>
         }
@@ -73,7 +73,7 @@ export default function JoinUsEnPage() {
           {openRoles.map((role) => (
             <div
               key={role.title}
-              className="flex flex-col gap-4 rounded-2xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-950 md:flex-row md:items-start"
+              className="flex flex-col gap-4 rounded-2xl border border-gray-200 bg-white p-6 md:flex-row md:items-start dark:border-gray-800 dark:bg-gray-950"
             >
               <div className="w-24 shrink-0">
                 <span className="inline-block rounded-md bg-gray-100 px-2 py-1 text-xs font-semibold text-gray-600 dark:bg-gray-800 dark:text-gray-400">
