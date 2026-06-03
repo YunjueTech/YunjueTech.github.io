@@ -88,6 +88,15 @@ export default function ProductsPage() {
             先看技术细节
           </Link>
         </div>
+        <p className="mt-4 text-sm text-gray-500 dark:text-gray-400">
+          或直接邮件至{' '}
+          <a
+            href="mailto:contact@yunjuetech.com?subject=申请加入云玦早期内测"
+            className="text-primary-500 dark:text-primary-400 underline"
+          >
+            contact@yunjuetech.com
+          </a>
+        </p>
       </Section>
     </>
   )

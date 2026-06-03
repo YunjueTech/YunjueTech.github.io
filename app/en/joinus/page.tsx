@@ -63,6 +63,10 @@ export default function JoinUsEnPage() {
             Yunjue is working on three mutually-dependent things: a Human-Centric World Model, a
             self-evolving agent, and an always-on multimodal hardware platform. We're looking for
             people who share the passion to build this new world with us.
+            <br />
+            <span className="text-base text-gray-500 dark:text-gray-400">
+              Send your CV to: hr@yunjuetech.com
+            </span>
           </>
         }
         cta={[{ href: 'mailto:hr@yunjuetech.com?subject=Apply%20to%20Yunjue', label: 'Send a CV' }]}

@@ -7,10 +7,12 @@ import { AnchorHTMLAttributes } from 'react'
 
 const CustomLink = ({ href, ...rest }: LinkProps & AnchorHTMLAttributes<HTMLAnchorElement>) => {
   const isAnchorLink = href && typeof href === 'string' && href.startsWith('#')
-  const isExternalLink =
-    href && typeof href === 'string' && (href.startsWith('http') || href.startsWith('mailto:'))
+  // mailto:/tel: 唤起本地客户端，绝不能带 target="_blank"（否则会先弹一个空白标签页）
+  const isProtocolLink =
+    href && typeof href === 'string' && (href.startsWith('mailto:') || href.startsWith('tel:'))
+  const isExternalLink = href && typeof href === 'string' && href.startsWith('http')
 
-  if (isAnchorLink) {
+  if (isAnchorLink || isProtocolLink) {
     return <a className="break-words" href={href as string} {...rest} />
   }
 

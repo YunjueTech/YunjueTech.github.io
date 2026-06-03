@@ -97,6 +97,15 @@ export default function ProductsEnPage() {
             Read the tech first
           </Link>
         </div>
+        <p className="mt-4 text-sm text-gray-500 dark:text-gray-400">
+          Or email us directly at{' '}
+          <a
+            href="mailto:contact@yunjuetech.com?subject=Apply%20to%20Yunjue%20early%20trial"
+            className="text-primary-500 dark:text-primary-400 underline"
+          >
+            contact@yunjuetech.com
+          </a>
+        </p>
       </Section>
     </>
   )

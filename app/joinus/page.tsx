@@ -62,6 +62,10 @@ export default function JoinUsPage() {
           <>
             云玦在做三件互为前提的事：以人为中心的世界模型、自进化智能体、随身多模态硬件。
             我们在找能有激情一起构造新世界的同路人。
+            <br />
+            <span className="text-base text-gray-500 dark:text-gray-400">
+              简历投递：hr@yunjuetech.com
+            </span>
           </>
         }
         cta={[{ href: 'mailto:hr@yunjuetech.com?subject=应聘云玦', label: '发送简历' }]}
